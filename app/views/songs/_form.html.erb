@@ -1,15 +1,16 @@
 <%= form_for @song, url: { action: "create" } do |f| %>
-
+<form onSubmit="submitSong(); return false">
+  
   <div class="form-group">
     <label>Song title</label>
-    <%= f.text_field :title, placeholder: "Title of the song", class: "form-control" %>
+    <input type="text" id="title" name="Song title" placeholder="Title of the song" class="form-control">
     <label>Track length</label>
-    <%= f.text_field :length, placeholder: "3:54", class: "form-control" %>
+    <input type="text" id="length" name="Song length" placeholder="3:54" class="form-control">
   </div>
 
   <div class="actions">
-    <%= f.submit "Save", class: "btn btn-primary" %>
+    <input type="submit" id="save" value="Save" class="btn btn-primary" >
     <%= link_to "Cancel", artists_path, class: "btn btn-default" %>
   </div>
-
+</form>
 <% end %>
