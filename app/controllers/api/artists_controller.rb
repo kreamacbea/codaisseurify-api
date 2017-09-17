@@ -1,5 +1,4 @@
-class Api::ArtistsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+class Api::ArtistsController < Api::BaseController
   before_action :set_artist, only: [:show, :destroy, :update]
 
   def index
