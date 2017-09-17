@@ -1,0 +1,21 @@
+<div class="main-heading">
+  <h1>Artist Overview</h1>
+</div>
+
+<!-- Thumbnails -->
+<div class="center">
+  <% @artists.each do |artist| %>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+       <% artist.image %>
+        <%= image_tag artist.image.thumbnail %>
+        <div class="caption">
+          <h3><%= artist.name %></h3>
+          <p><%= link_to "View songs", artist_path(artist), class: "btn btn-primary" %></p>
+          <%= link_to "Delete artist", artist, method: :delete, data: { confirm: "Really wanna delete this artist?" }, class: "btn btn-secondary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= link_to "Add new artist", new_artist_path(@artists), class: "btn btn-primary outside" %>

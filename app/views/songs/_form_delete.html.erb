@@ -1,0 +1,12 @@
+<%= form_for @song, url: { action: "destroy" } do |f| %>
+  <div class="panel panel-primary">
+    <div class="panel-default">
+      <div class="form-group">
+        <div>
+          Song: <%= @song.title %>
+          <%= link_to "Delete", artist_song_path(@song), method: :delete, data: { confirm: "Really wanna delete this song?" }, class:"btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

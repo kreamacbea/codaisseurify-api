@@ -1,0 +1,23 @@
+<%= form_for @artist, url: { action: "create" } do |f| %>
+
+  <div class="form-group">
+    <label>Artist name</label>
+    <%= f.text_field :name, placeholder: "Name of the artist", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label>Upload image</label>
+    <span class="btn btn-default">
+      <%= file_field_tag "image[]", type: :file, multiple: false %>
+    </span>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  </div>
+
+  <div class="actions">
+    <%= link_to "Cancel", artists_path, class: "btn btn-default" %>
+  </div>
+
+<% end %>
