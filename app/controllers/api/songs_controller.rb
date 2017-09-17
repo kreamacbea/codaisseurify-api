@@ -2,20 +2,20 @@ class Api::SongsController < ApplicationController
   # skip_before_action :verify_authenticity_token
   before_action :set_artist, only: [:show, :create, :update]
 
+  def index
+    songs = Song.all
+    render status: 200, json: songs
+  end
+
   def show
-    render status: 200, json: {
-      song: song
-    }.to_json
+    render status: 200, json: song
   end
 
   def create
     song = Song.new(song_params)
 
     if song.save
-      render status: 201, json: {
-        message: "Song succesfully created",
-        song: song
-      }.to_json
+      render status: 201, json: song
     else
       render status: 422, json: {
         errors: song.errors
@@ -33,8 +33,7 @@ class Api::SongsController < ApplicationController
 
   def update
     if song.update(song_params)
-      render status: 200, json: {
-        message: "Song updated"
+      render status: 200, json: song
       }.to_json
     else
       render status: 422, json: {
