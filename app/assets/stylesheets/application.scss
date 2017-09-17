@@ -74,15 +74,20 @@ body {
   margin-top: 10%;
 }
 
-.song-list {
-  list-style-type: decimal-leading-zero;
+label, .artist-name, .warning, .panel-default, .song-list-title, .song-list-length {
+  color: black;
+  text-shadow: none;
+}
+
+.song-list-title {
+  list-style-type: disc;
   text-align: left;
   font-weight: 600;
 }
 
-label, .artist-name, .song-list, .warning, .panel-default {
-  color: black;
-  text-shadow: none;
+.song-list-length {
+  list-style-type: none;
+  text-align: left;
 }
 
 .artist-name {

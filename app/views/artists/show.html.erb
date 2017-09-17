@@ -9,12 +9,14 @@
           <div class="row">
             <div class="col-md-7">
               <% if @artist.songs.any? %>
-                <ul class="song-list">
+                <ul id="song-list">
                   <% @artist.songs.each do |song| %>
-                    <li class="song-list-item"><%= song.title %>
-                      <%= song.length %>
-                      <%= link_to "Delete", artist_song_path(song.artist_id, song.id), method: :delete, data: { confirm: "Really wanna delete this song?" }, class: "btn btn-secondary" %>
-                    </li>
+                    <li class="song-list-title" id="title">
+                      <%= song.title %></li>
+                    <li class="song-list-length" id="length">
+                      <%= song.length %></li>
+                    <!-- <input type="submit" id="delete-song" value="Delete song"> -->
+                    <%= link_to "Delete", artist_song_path(song.artist_id, song.id), method: :delete, data: { confirm: "Really wanna delete this song?" }, class: "btn btn-secondary warning" %>
                   <% end %>
                 </ul>
               <% else %>
