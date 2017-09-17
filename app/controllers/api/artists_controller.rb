@@ -2,25 +2,19 @@ class Api::ArtistsController < Api::BaseController
   before_action :set_artist, only: [:show, :destroy, :update]
 
   def index
-    render status: 200, json: {
-      artists: Artist.all
-    }.to_json
+    artists = Artist.all
+    render status: 200, json: artists
   end
 
   def show
-    render status: 200, json: {
-      artist: artist
-    }.to_json
+    render status: 200, json: artist
   end
 
   def create
     artist = Artist.new(artist_params)
 
     if artist.save
-      render status: 201, json: {
-        message: "Artist succesfully created",
-        artist: artist
-      }.to_json
+      render status: 201, json: artist
     else
       render status: 422, json: {
         errors: artist.errors
@@ -38,9 +32,7 @@ class Api::ArtistsController < Api::BaseController
 
   def update
     if artist.update(artist_params)
-      render status: 200, json: {
-        message: "Artist updated"
-      }.to_json
+      render status: 200, json: artist
     else
       render status: 422, json: {
         message: "Artist could not be updated"

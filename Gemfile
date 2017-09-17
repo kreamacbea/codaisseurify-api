@@ -42,6 +42,7 @@ end
 
 group :test do
   gem 'capybara', '~> 2.9', '>= 2.9.1'
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -65,3 +66,4 @@ gem 'jquery-rails', '~> 4.3.1'
 gem 'rails_12factor', group: :production
 gem 'carrierwave', '0.11.2'
 gem 'cloudinary', '1.2.3'
+gem 'active_model_serializers', '~> 0.10.0'

@@ -1,10 +1,12 @@
 class SongsController < ApplicationController
-  before_action :set_artist, only: [:show, :new, :create, :update]
+  before_action :set_artist, only: [:index, :show, :new, :create, :edit, :update]
 
-  def index; end
+  def index
+    @songs = artist.songs
+  end
 
   def show
-    @song = Song.find(params[:artist_id])
+    @song = artist.songs.find(params[:id])
   end
 
   def new
@@ -23,7 +25,6 @@ class SongsController < ApplicationController
   end
 
   def edit
-    @artist = Artist.find(params[:artist_id])
     @song = Song.find(params[:id])
   end
 
@@ -33,6 +34,7 @@ class SongsController < ApplicationController
 
   def destroy
     @song = Song.find(params[:id])
+    artist = @song.artist
     @song.destroy
 
     redirect_to artists_path, notice: "Song deleted"
@@ -41,7 +43,7 @@ class SongsController < ApplicationController
   private
 
   def set_artist
-    @artist = Artist.find(params[:artist_id])
+    artist = Artist.find(params[:artist_id])
   end
 
   def song_params
