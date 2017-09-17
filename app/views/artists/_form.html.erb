@@ -1,4 +1,4 @@
-<%= form_for @artist, url: { action: "create" } do |f| %>
+<form onSubmit="submitArtist(); return false">
 
   <div class="form-group">
     <label>Artist name</label>
@@ -20,4 +20,4 @@
     <%= link_to "Cancel", artists_path, class: "btn btn-default" %>
   </div>
 
-<% end %>
+</form>

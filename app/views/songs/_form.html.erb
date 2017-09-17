@@ -1,6 +1,5 @@
-<%= form_for @song, url: { action: "create" } do |f| %>
 <form onSubmit="submitSong(); return false">
-  
+
   <div class="form-group">
     <label>Song title</label>
     <input type="text" id="title" name="Song title" placeholder="Title of the song" class="form-control">
@@ -13,4 +12,3 @@
     <%= link_to "Cancel", artists_path, class: "btn btn-default" %>
   </div>
 </form>
-<% end %>
