@@ -8,27 +8,36 @@
       <div class="panel-body">
           <div class="row">
             <div class="col-md-7">
+
+              <form onSubmit="submitSong(); return false">
+                <label>Add a new song:</label>
+                <input type="text" id="new-song" name="Song title" placeholder="Title of the song">
+              </form>
+
               <% if @artist.songs.any? %>
                 <ul id="song-list">
                   <% @artist.songs.each do |song| %>
-                    <li class="song-list-title" id="title">
-                      <%= song.title %></li>
-                    <li class="song-list-length" id="length">
-                      <%= song.length %></li>
-                    <!-- <input type="submit" id="delete-song" value="Delete song"> -->
-                    <%= link_to "Delete", artist_song_path(song.artist_id, song.id), method: :delete, data: { confirm: "Really wanna delete this song?" }, class: "btn btn-secondary warning" %>
+                    <li class="song-list-item">
+                      <input id="song-1" type="checkbox" onchange="toggleDelete.bind(this)();">
+                      <label for="song-1"><%= song.title %></label>
+                    </li>
                   <% end %>
                 </ul>
+                <a href="#" onclick="deleteSong(); return false">Delete selected song</a>
               <% else %>
                 <p class="warning">Whoops, it looks a little empty here. Add some nice songs, if you like...
                 </p>
               <% end %>
             </div>
+            <br/>
+            <div>
+              <a href="#" onclick="selectAll(); return false">Select all</a>
+            </div>
+            <br/>
           </div>
         </div>
       </div>
     <div>
-      <%= link_to "Add song", new_artist_song_path(@artist), class: "btn btn-primary outside" %>
       <%= link_to "Back to overview", artists_path, class: "btn btn-default outside" %>
     </div>
   </div>
