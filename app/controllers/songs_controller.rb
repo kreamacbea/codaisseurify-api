@@ -7,7 +7,8 @@ class SongsController < ApplicationController
   end
 
   def show
-    @song = artist.songs.find(params[:id])
+    @songs = Song.all
+    @song = Song.new
   end
 
   def new
@@ -19,10 +20,14 @@ class SongsController < ApplicationController
     @song = Song.new(song_params)
     @song.artist = Artist.find(params[:artist_id])
 
-    if @song.save!
-      redirect_to @artist, notice: "Song added"
-    else
-      render :new, notice: "Something went wrong here. Wanna try again?"
+    respond_to do |format|
+      if @song.save
+        format.html { redirect_to artist_song_path, notice: "Song added" }
+        format.json { render :show, status: :created, location: @artist.song }
+      else
+        format.html { render :new, notice: "Something went wrong here. Wanna try again?" }
+        format.json { render json: @song.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -39,7 +44,10 @@ class SongsController < ApplicationController
     artist = @song.artist
     @song.destroy
 
-    redirect_to artists_path, notice: "Song deleted"
+    respond_to do |format|
+      format.html { redirect_to artist_song_path, notice: "Song deleted" }
+      format.json { render :show, status: :deleted, location: @artist.songs }
+    end
   end
 
   private

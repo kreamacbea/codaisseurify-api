@@ -6,34 +6,9 @@
       </div>
 
       <div class="panel-body">
-          <div class="row">
-            <div class="col-md-7">
-
-              <form onsubmit="submitSong(); return false">
-                <label>Add a new song:</label>
-                <input type="text" id="new-song" name="Song title" placeholder="Title of the song">
-              </form>
-
-              <% if @artist.songs.any? %>
-                <ul id="song-list">
-                  <% @artist.songs.each do |song| %>
-                    <li class="song-list-item">
-                      <input id="song-1" type="checkbox" onchange="toggleDelete.bind(this)();">
-                      <label for="song-1"><%= song.title %></label>
-                    </li>
-                  <% end %>
-                </ul>
-                <a href="#" onclick="deleteSong(); return false">Delete selected song</a>
-              <% else %>
-                <p class="warning">Whoops, it looks a little empty here. Add some nice songs, if you like...
-                </p>
-              <% end %>
-            </div>
-            <br/>
-            <div>
-              <a href="#" onclick="selectAll(); return false">Select all</a>
-            </div>
-            <br/>
+        <div class="row">
+          <div class="col-md-7">
+            <%= render @songs %>
           </div>
         </div>
       </div>
