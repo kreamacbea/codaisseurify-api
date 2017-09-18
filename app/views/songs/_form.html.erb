@@ -1,14 +1,12 @@
-<form onSubmit="submitSong(); return false">
+<%= form_for(song) do |f| %>
+  <div class="form-group <%= song.errors.any? ? 'has-error' : '' %>" id="formgroup-title">
+    <label>Add a new song:</label>
+    <%= f.text_field :title, placeholder: "Title of the song", class: 'form-control' %>
 
-  <div class="form-group">
-    <label>Song title</label>
-    <input type="text" id="new-song" name="Song title" placeholder="Title of the song" class="form-control">
-    <label>Track length</label>
-    <input type="text" id="new-length" name="Song length" placeholder="3:54" class="form-control">
+    <% if song.errors.any? %>
+      <% song.errors.full_messages.each do |message| %>
+        <span class="help-block"><%= message %></span>
+      <% end %>
+    <% end %>
   </div>
-
-  <div class="actions">
-    <input type="submit" id="save" value="Save" class="btn btn-primary" >
-    <%= link_to "Cancel", artists_path, class: "btn btn-default" %>
-  </div>
-</form>
+<% end %>

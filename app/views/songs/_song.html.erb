@@ -1,5 +1,11 @@
-<div class="caption">
-  <h3><%= artist.name %></h3>
-  <p><%= link_to "View songs", artist_path(artist), class: "btn btn-primary" %></p>
-  <%= link_to "Delete artist", artist, method: :delete, data: { confirm: "Really wanna delete this artist?" }, class: "btn btn-secondary" %>
+<ul id="songList">
+  <% @artist.songs.each do |song| %>
+    <li class="song <%= song.selected? ? "success" : "" %>" data-id="<%= song.id %>">
+      <input name="song[<%= song.id %>]" id="song-<%= song.id %>" type="checkbox" value="1" <%= song.selected? ? 'checked="checked"' : '' %>/>
+      <label for="song-<%= song.id %>"><%= song.title %></label>
+    </li>
+  <% end %>
+</ul>
+<div>
+  <a href="#" id="deleteSelectedSongs">Delete</a>
 </div>
